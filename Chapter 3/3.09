@@ -1,80 +1,88 @@
-#include <iostream>
-#include <string>
-
-class Account {
-
-public:
-
-   Account( std::string accountName, int initialBalance )
-      : name{ accountName } {
-
-      if ( initialBalance > 0 )
-         balance = initialBalance;
-   }
-
-   void deposit( int depositAmount ) {
-      if ( depositAmount > 0 )
-         balance = balance + depositAmount;
-   }
-
-   void withdraw( int withdrawAmount ) {
-      if ( withdrawAmount > balance )
-         std::cout << "Withdrawal amount exceeded account balance.\n";
-      if ( withdrawAmount <= balance )
-         balance = balance - withdrawAmount;
-   }
-
-   int getBalance() const {
-      return balance;
-   }
-
-   void setName( std::string accountName ) {
-      name = accountName;
-   }
-
-   std::string getName() const {
-      return name;
-   }
-
-private:
-
-   std::string name;
-   int balance{ 0 };
-};
-
+#include<iostream>
+#include<string>
 using namespace std;
+class C5_Bank{
+	private:
+	int account;
+	public:
+	 C5_Bank(int a){//constractor
+	 account=a;	
+	 cout<<"======================\n";
+	 cout<<"Welcome to 5C Bank\n";
+	 cout<<"======================\n";
+	 menu();
+	 }
+	widraw(){//to witdraw amount
+	int a;
+	cout<<"Enter amount to widraw:";
+	cin>>a;
+	if(a>=1000 && a<=25000){
+			account=account-a;
+			cout<<"===========================================================\n";
+				cout<<"You have widraw a account of "<<a<<" from your account \n";
+			cout<<"===========================================================\n";	
+				menu();
+		
+		}else{
+			cout<<"=======================================\n";
+			cout<<"You are volating the deposit policy\n";
+			cout<<"Please deposit between 1000 to 25000\n";
+			cout<<"========================================\n";
+		}
+		menu();
+	
+	
+	}
+	Deposit(){
+		int a;
+		cout<<"Please enter amount to deposit:";
+		cin>>a;
+		if(a>=500 && a<=500){
+			account=account+a;
+			cout<<"===========================================================\n";
+			cout<<"You depsoit an amount "<<a<<" in your account \n";
+			cout<<"===========================================================\n";
+			menu();
+		}else{
+			cout<<"========================================\n";
+			cout<<"You are volating the deposit policy\n";
+			cout<<"Please deposit between 500 to 5 lakh\n";
+			cout<<"========================================\n";
+		}
+		
+		menu();
+	}
+	check_balance(){
+		cout<<"=========================================\n";
+		cout<<"Your Total Balance is: "<<account<<endl;
+		cout<<"========================================\n";
+		menu();
+	}
+	menu(){
+		int a;
+		cout<<"Please enter 1 for Check Balance\n";
+		cout<<"Please enter 2 for Cash Deposit\n";
+		cout<<"Please enter 3 for Cash widraw\n";
+cin>>a;
+if(a==1){
+check_balance();
+menu();
+}else if(a==2){
+Deposit();
+menu();
+}else if(a==3){
+	widraw();
+	menu();
+}
+else{
+	cout<<"Invalid Entry!\n";
+	cout<<"Select option from given numbers\n";
+	menu();
+}
+	}
 
-int main() {
-
-   Account account1{ "Jane Green", 50 };
-   Account account2{ "John Blue", -7 };
-
-   cout << "account1: " << account1.getName() << " balance is $"
-      << account1.getBalance();
-   cout << "\naccount2: " << account2.getName() << " balance is $"
-      << account2.getBalance();
-
-   int withdrawAmount;
-
-   cout << "\n\nEnter withdraw amount for account1: ";
-   cin >> withdrawAmount;
-
-   account1.withdraw( withdrawAmount );
-
-   cout << "\naccount1: " << account1.getName() << " balance is $"
-      << account1.getBalance();
-   cout << "\naccount2: " << account2.getName() << " balance is $"
-      << account2.getBalance();
-
-   cout << "\n\nEnter withdraw amount for account2: ";
-   cin >> withdrawAmount;
-   
-   account2.withdraw( withdrawAmount );
-
-   cout << "\naccount1: " << account1.getName() << " balance is $"
-      << account1.getBalance();
-   cout << "\naccount2: " << account2.getName() << " balance is $"
-      << account2.getBalance() << endl;
-
-   return 0;
+};
+main(){
+	C5_Bank obj(10000);
+		
 }
